@@ -1,75 +1,47 @@
-
-# SaasAble Free React Material UI, UI-Kit with Dashboard Template
+# 🎓 Career Recommender – AI-Powered Admission Guidance System
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)](https://github.com/phoenixcoded/saasable-ui/blob/main/LICENSE)
+[![Status](https://img.shields.io/badge/Powered%20By-Machine%20Learning-blue.svg)](#)
+[![Live Demo](https://img.shields.io/badge/Demo-Available-28a745.svg)](#)
 
-SaasAble is a complete solution for building SaaS products as well as non-SaaS products. Whether you’re creating a user-friendly **front-end** or a powerful **admin dashboard**, SaasAble has all the tools you need. It’s also flexible—perfect not just for SaaS but also for agencies, digital products, CRMs, blogs, AI platforms, project management, learning systems, and more.
+> 🚀 An intelligent recommendation system that guides students toward the most suitable career path based on their academic background, interests, and eligibility criteria.
 
-[![SaasAble Free React UI kit and Dashboard Template](https://ableproadmin.com/adv-banner-saasable/adv-github.png)](https://www.saasable.io/)
+![Career Recommender Banner](https://ableproadmin.com/adv-banner-saasable/adv-github.png)
 
-## Free Vs Premium
+---
 
-| [SaasAble Free](https://free.saasable.io/)     | [SaasAble Pro](https://www.saasable.io/)                                         |
-| ---------------------------------------------- | :------------------------------------------------------------------------------- |
-| **1** Demo Landing                             | **7+** Demo Landing                                                              |
-| **25** Component Blocks                        | **193+** Component blocks                                                        |
-| -                                              | ✓ Dark/Light Mode 🌓                                                            |
-| -                                              | ✓ TypeScript version                                                             |
-| -                                              | ✓ Design files (Figma)                                                           |
-| -                                              | ✓ Multiple color options                                                         |
-| -                                              | ✓ RTL                                                                            |
-| -                                              | ✓ Supabase authentication                                                         |
-| -                                              | ✓ [More components](https://saasable.io/sections)                                |
-| ✓ MIT License                                  | ✓ [Pro License](https://mui.com/store/license/)                                  |
+## 🔍 About the Project
 
+**Career Recommender** is a machine learning-based web application designed to assist students in choosing the most suitable academic department or field for higher education. It evaluates a user's academic inputs, interests, and quota preferences (Sports, Disability, Local) to provide personalized admission guidance.
 
-## Table of contents
+Built with modern technologies using the **SaasAble Free React UI Kit**, this app features a clean, intuitive, and responsive interface for students.
 
-- [Getting started](#getting-started)
-- [Technology stack](#technology-stack)
-- [Author](#author)
-- [Issues?](#issues)
-- [License](#license)
+---
 
-## Getting Started
+## ✨ Features
 
-1. Clone from Github
+- 🔬 **ML-Based Career Recommendations**
+- 📊 Real-Time Input Analysis
+- 🧠 Smart Suggestions Based on Eligibility
+- 🎨 Beautiful Responsive UI (Material UI V6)
+- ⚙️ Easily Extendable and Customizable
+- 🧑‍🎓 Student-Friendly Interface
 
-```
-git clone https://github.com/phoenixcoded/saasable-ui.git
-```
+---
 
-2. Goto `uikit` directory and Install packages
+## 💻 Technology Stack
 
-```
-npm install
-```
+| Frontend         | Backend     | ML Engine      |
+| ---------------- | ----------- | -------------- |
+| React (Next.js)  | Django/Flask | Python + Scikit-learn |
 
-3. Run project
+> 🎨 UI Powered by [SaasAble Free React UI Kit](https://free.saasable.io/)
 
-```
-npm run dev
-```
+---
 
+## 🚀 Getting Started
 
-## Technology stack
+1. **Clone the Repository**
 
-- [Material UI V6](https://mui.com/core/)
-- Next.js
-
-## Author
-
-SaasAble is managed by the team Phoenixcoded
-
-## Support
-
-https://support.phoenixcoded.net/
-
-## Issues
-
-Please generate a [GitHub issue](https://github.com/phoenixcoded/saasable-ui/issues) if you found a bug in any version. We will try our best to resolve the issue.
-
-## License
-
-- MIT
+```bash
+git clone https://github.com/your-username/career-recommender.git
