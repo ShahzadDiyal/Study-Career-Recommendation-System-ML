@@ -33,9 +33,9 @@ Built with modern technologies using the **SaasAble Free React UI Kit**, this ap
 
 | Frontend         | Backend     | ML Engine      |
 | ---------------- | ----------- | -------------- |
-| React (Next.js)  | Django/Flask | Python + Scikit-learn |
+| React js | Flask | Python + Scikit-learn |
 
-> 🎨 UI Powered by [SaasAble Free React UI Kit](https://free.saasable.io/)
+> 🎨 UI Designed by [Muhammad Shahzad Diyal](https://www.linkedin.com/in/muhammad-shahzad-1b236b247/)
 
 ---
 
@@ -44,4 +44,32 @@ Built with modern technologies using the **SaasAble Free React UI Kit**, this ap
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/your-username/career-recommender.git
+git clone https://github.com/ShahzadDiyal/Study-Career-Recommendation-System-ML.git
+
+
+2. **Navigate to the Project Directory**
+
+```bash
+cd Recommendation-system/frontend
+
+
+3. **Install Dependencies**
+
+```bash
+npm install
+
+
+4. **Start the Development Server**
+
+```bash
+npm run dev
+
+
+5. **Folder Structure **
+career-recommender/
+│
+├── backend/             # Flask or Django ML API
+├── frontend/              # Static assets like images            # Machine learning model files
+└── README.md
+
+
