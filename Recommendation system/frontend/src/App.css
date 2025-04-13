@@ -1,0 +1,343 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e2c3a;
+  width: 100% !important;
+}
+
+/* Home Page style */
+.home-page{
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Component style */
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 1200px;
+  margin-top: 10px;
+  display: flex;
+  z-index: 1000;
+  /* background: linear-gradient(90deg, #384ef4, #b060ed); */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(192, 192, 192, 0.6));
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-unstyle {
+  list-style-type: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  /* background: linear-gradient(90deg, #384ef4, #b060ed); */
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-unstyle li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.list-unstyle li a:hover {
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  color: #000;
+  background: linear-gradient(90deg, #384ef4, #b060ed);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo{
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+
+.form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: white;
+  /* background-color: rgb(255, 189, 189); */
+  width: 100%;
+  background: linear-gradient(90deg, #000000, #2daeaf);
+  max-width: 900px;
+}
+
+
+.hr{
+  width: 100%;
+  margin: 20px 0 20px 0;
+}
+
+.input{
+  padding: 5px;
+  border-radius: 5px;
+}
+.dropdown{
+  width: auto;
+  padding: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+}
+
+.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid  #bcbf00;
+  border-radius: 10;
+  color: rgb(245, 232, 232);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background: rgb(0, 0, 0);
+  color: rgb(216, 216, 216);
+  outline: none; /* optional: removes blue glow */
+}
+
+
+
+
+
+/* Slider component styling */
+.slider-container {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  gap: 5px;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+.slide {
+  border-radius: 20px;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 20px;
+}
+.slide-content {
+    padding: 20px;
+    justify-items: center;
+    
+}
+.slide:nth-child(1) {
+  background-color: #040023;
+}
+.slide:nth-child(2) {
+  background-color: #641439;
+}
+.slide:nth-child(3) {
+  background-color: #1A535C;
+}
+
+.slide.active {
+  flex: 10;
+}
+
+.slide.inactive {
+  flex: 1;
+  opacity: 0.6;
+}
+.get-started-btn{
+  color: black;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #1abc9c;
+  color:#ffffff;
+  cursor: pointer
+}
+.get-started-btn:hover{
+  background-color: #f1c40f;
+  color: #2c3e50 ;
+}
+
+
+
+
+/* feature-container */
+.heading{
+  font-size: 35px;
+  color: white
+}
+.card{
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(192, 192, 192, 0.6))111a1;
+  color: black;
+  justify-items: center;
+  width: 300px;
+}
+.card:hover {
+  z-index: 999;
+  transform: scale(1.1);
+  background-color: #2a97a8;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* benefits styling */
+.benefits-right-section{
+  border: 1px solid;
+  border-left: none;
+  padding: 20px;
+  width: 400px;
+  border-radius: 20px;
+  line-height: 2;
+  color: white;
+}
+
+
+/* about component styling */
+.about-section{
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px;
+  height: auto;
+  border-radius: 20px;
+  align-items: center;
+  background: linear-gradient( #09002f,#67476d  );
+}
+
+
+/* how it work component styling */
+.howitwork-section{
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px;
+  height: auto;
+  border-radius: 20px;
+  align-items: center;
+  background: linear-gradient(#4025b5, #000000);
+}
+.step-card{
+  border: 1px solid ;
+  border-top: none;
+  border-radius: 20px;
+}
+
+
+
+/* team component style */
+.team-section{
+  margin: 20px 0 0 0;
+  padding: 0;
+  border-radius: 20px;
+  background: linear-gradient(#000000, #461d49);
+}
+.team-card{
+  border: 1px solid ;
+  padding: 20px;
+  margin-left: 5px;
+  border-radius: 20px;
+}
+
+
+/* Recommendation component styling  */
+.submit-btn {
+  border: 1px solid white;
+  color: white;
+  background: #000;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: yellow;
+  color: black;
+  transform: translateX(5px);
+}
+
+
+
+/* footer Component style */
+.footer {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 1200px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  z-index: 1000;
+  /* background: linear-gradient(90deg, #384ef4, #b060ed); */
+  background: #000d26;
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-menu {
+  list-style-type: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  /* background: linear-gradient(90deg, #384ef4, #b060ed); */
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-menu li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: yellow;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.footer-menu li a:hover {
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  color: #000;
+  background: linear-gradient(90deg, #384ef4, #b060ed);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
