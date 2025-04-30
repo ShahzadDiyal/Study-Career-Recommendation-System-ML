@@ -1,35 +1,114 @@
-import { useState } from "react"
+import { useState, ChangeEvent, FormEvent } from "react";
+import axios from "axios";
+
+interface FormDataType {
+  [key: string]: string | number;
+}
+
+const BaseUrl = 'http://localhost:5000'
+
 
 const Home = () => {
-  const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedGroup, setSelectedGroup] = useState<string>("");
+  const [formData, setFormData] = useState<FormDataType>({});
+  const [result, setResult] = useState<string | null>(null);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value.trim() === "" ? 0 : value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const groupMap: { [key: string]: number } = {
+      "Pre-Medical": 1,
+      "Pre-Engineering": 2,
+      "ics": 3,
+      "arts": 4,
+    };
+
+    const payload = {
+      "Educational Background": groupMap[selectedGroup] || 0,
+      "Biology": Number(formData["biology"]) || 0,
+      "Chemistry": Number(formData["chemistry"]) || 0,
+      "Civics": Number(formData["civics"]) || 0,
+      "Computer Science": Number(formData["computer"]) || 0,
+      "Economics": Number(formData["economics"]) || 0,
+      "English": Number(formData["english"]) || 0,
+      "Fine Arts": Number(formData["fine_arts"]) || 0,
+      "General Mathematics": Number(formData["general_math"]) || 0,
+      "Geography": Number(formData["geography"]) || 0,
+      "History": Number(formData["history"]) || 0,
+      "Islamic Studies": Number(formData["islamic_studies"]) || 0,
+      "Library Science": Number(formData["library_science"]) || 0,
+      "Maths": Number(formData["math"]) || 0,
+      "Pakistan Studies": Number(formData["pak_study"]) || 0,
+      "Physics": Number(formData["physics"]) || 0,
+      "Sociology": Number(formData["sociology"]) || 0,
+      "Statistics": Number(formData["statistics"]) || 0,
+      "Urdu": Number(formData["urdu"]) || 0,
+      "Islamic History": Number(formData["islamic_history"]) || 0,
+      "Arabic": Number(formData["arabic"]) || 0,
+    };
+
+    try {
+      const res = await axios.post(`${BaseUrl}/predict`, payload);
+      const prediction = res.data["Recommended Fields"];
+      setResult(prediction);
+      localStorage.setItem("career_prediction", prediction);
+    } catch (error) {
+      console.error("Prediction failed:", error);
+      setResult("Something went wrong. Please try again.");
+    }
+  };
+
+  const renderSubjectInput = (subject: string) => (
+    <div className="col-md-6 mb-3" key={subject}>
+      <label>{subject.replace("_", " ").replace(/\b\w/g, (l) => l.toUpperCase())}:</label>
+      <input className="form-control" type="number" name={subject} onChange={handleChange} />
+    </div>
+  );
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", paddingTop: "20px",backgroundColor:"linear-gradient(90deg, #000000, #2daeaf)" }}>
-
-      <form className="form p-4 rounded shadow" style={{ width: "100%", maxWidth: "1200px", backgroundColor:"#BBC2CC"}}>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        minHeight: "100vh",
+        paddingTop: "20px",
+        background: "linear-gradient(90deg, #000000, #2daeaf)",
+      }}
+    >
+      <form
+        onSubmit={handleSubmit}
+        className="form p-4 rounded shadow"
+        style={{ width: "100%", maxWidth: "1200px", backgroundColor: "#BBC2CC" }}
+      >
         <h2 className="text-center mb-4">Your Career Recommender</h2>
 
         {/* Personal Info */}
         <div className="row">
-          <h4>Personal Informations:</h4>
+          <h4>Personal Information:</h4>
+          {["name", "email", "phone"].map((field) => (
+            <div className="col-md-6 mb-3" key={field}>
+              <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+              <input
+                className="form-control"
+                type={field === "email" ? "email" : field === "phone" ? "number" : "text"}
+                name={field}
+                onChange={handleChange}
+              />
+            </div>
+          ))}
           <div className="col-md-6 mb-3">
-            <label>Full Name:</label><br />
-            <input className="form-control" type="text" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label>Email:</label><br />
-            <input className="form-control" type="email" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label>Phone:</label><br />
-            <input className="form-control" type="number" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label>Gender:</label><br />
-            <select className="form-control">
-            <option value="">-- Select Gender --</option>
-              <option value="">Male</option>
-              <option value="">Female</option>
+            <label>Gender:</label>
+            <select className="form-control" name="gender" onChange={handleChange}>
+              <option value="">-- Select Gender --</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
           </div>
         </div>
@@ -37,27 +116,12 @@ const Home = () => {
         <hr />
         <h4>Enter the marks in the Compulsory Subjects:</h4>
         <div className="row">
-          <div className="col-md-6 mb-3">
-            <label>English:</label><br />
-            <input className="form-control" type="text" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label>Urdu:</label><br />
-            <input className="form-control" type="text" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label>Pak Study:</label><br />
-            <input className="form-control" type="text" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label>Islamiyat (Compulsory):</label><br />
-            <input className="form-control" type="text" />
-          </div>
+          {["english", "urdu", "pak_study", "islamic_studies"].map(renderSubjectInput)}
         </div>
 
         <hr />
         <div className="mb-3">
-          <label>Select your FSc Group:</label><br />
+          <label>Select your FSc Group:</label>
           <select
             className="form-control"
             value={selectedGroup}
@@ -71,105 +135,35 @@ const Home = () => {
           </select>
         </div>
 
-        {/* Group-based subjects */}
-        {selectedGroup === "Pre-Engineering" && (
-          <>
-            <h4>Pre-Engineering Group Subjects</h4>
-            <div className="row">
-              <div className="col-md-6 mb-3">
-                <label>Physics</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Chemistry</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Mathematics</label><br />
-                <input className="form-control" type="text" />
-              </div>
-            </div>
-          </>
-        )}
+        <div className="row">
+          {selectedGroup === "Pre-Engineering" &&
+            ["physics", "chemistry", "math"].map(renderSubjectInput)}
 
-        {selectedGroup === "Pre-Medical" && (
-          <>
-            <h4>Pre-Medical Group Subjects</h4>
-            <div className="row">
-              <div className="col-md-6 mb-3">
-                <label>Physics</label><br />
-                <input className="form-control" type="number" max={199} min={0}  />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Chemistry</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Biology</label><br />
-                <input className="form-control" type="text" />
-              </div>
-            </div>
-          </>
-        )}
+          {selectedGroup === "Pre-Medical" &&
+            ["physics", "chemistry", "biology"].map(renderSubjectInput)}
 
-        {selectedGroup === "ics" && (
-          <>
-            <h4>ICS Group Subjects</h4>
-            <div className="row">
-              <div className="col-md-6 mb-3">
-                <label>Physics</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Computer Science</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Mathematics</label><br />
-                <input className="form-control" type="text" />
-              </div>
-            </div>
-          </>
-        )}
+          {selectedGroup === "ics" &&
+            ["physics", "computer", "math"].map(renderSubjectInput)}
 
-        {selectedGroup === "arts" && (
-          <>
-            <h4>Arts Group Subjects</h4>
-            <div className="row">
-              <div className="col-md-6 mb-3">
-                <label>General Mathematics</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Islamic History</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Civics</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Economics</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Islamic Studies (Elective)</label><br />
-                <input className="form-control" type="text" />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label>Arabic</label><br />
-                <input className="form-control" type="text" />
-              </div>
-            </div>
-          </>
-        )}
+          {selectedGroup === "arts" &&
+            ["general_math", "islamic_history", "civics", "economics", "islamic_studies", "arabic"].map(renderSubjectInput)}
+        </div>
 
         <div className="text-center mt-4">
-          <button className="btn submit-btn w-100"type="submit" >Submit</button>
+          <button className="btn btn-primary w-100" type="submit">
+            Submit
+          </button>
         </div>
+
+        {result && (
+          <div className="text-center mt-4">
+            <h5 className="text-success">Recommended Career Path:</h5>
+            <p><strong>{result}</strong></p>
+          </div>
+        )}
       </form>
     </div>
   );
 };
 
-export default Home
+export default Home;

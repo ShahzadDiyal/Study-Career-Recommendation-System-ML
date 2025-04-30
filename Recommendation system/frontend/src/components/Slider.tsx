@@ -33,7 +33,7 @@ const Slider = () => {
                                     <li>Builds a focused career path</li>
                                 </ul>
                                 <button className="get-started-btn">
-                                    <Link to="/recommendation-form" style={{color:"black", fontWeight:"bold"}}>Get Started</Link>
+                                    <Link to="/get-recommendation" style={{color:"black", fontWeight:"bold"}}>Get Recommendation</Link>
                                 </button>
                             </div>
                             <div className="col-md-6">
@@ -59,7 +59,7 @@ const Slider = () => {
                                     <li>Explore new growing fields</li>
                                 </ul>
                                 <button className="get-started-btn">
-                                    <Link to="/recommendation-form" style={{color:"black", fontWeight:"bold"}}>Get Started</Link>
+                                    <Link to="/get-recommendation" style={{color:"black", fontWeight:"bold"}}>Get Recommendation</Link>
                                 </button>
                             </div>
                             <div className="col-md-6">
@@ -85,7 +85,7 @@ const Slider = () => {
                                     <li>Gain confidence through guidance</li>
                                 </ul>
                                 <button className="get-started-btn">
-                                    <Link to="/recommendation-form" style={{color:"black", fontWeight:"bold"}}>Get Started</Link>
+                                    <Link to="/get-recommendation" style={{color:"black", fontWeight:"bold"}}>Get Recommendation</Link>
                                 </button>
                             </div>
                             <div className="col-md-6">
