@@ -1,0 +1,16 @@
+/* how it work component styling */
+.howitwork-section{
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px;
+    height: auto;
+    border-radius: 20px;
+    align-items: center;
+    background: linear-gradient(#4025b5, #000000);
+  }
+  .step-card{
+    border: 1px solid ;
+    border-top: none;
+    border-radius: 20px;
+  }
+  

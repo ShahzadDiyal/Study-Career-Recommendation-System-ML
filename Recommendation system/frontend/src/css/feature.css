@@ -1,0 +1,70 @@
+/* feature.css */
+
+.heading {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.feature-container {
+  padding: 50px 20px;
+  background: #040023;
+  border-radius: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-description {
+  max-width: 1000px;
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Adds spacing between cards */
+}
+
+.card {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(192, 192, 192, 0.6));
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Glowing shadow effect */
+  cursor: pointer;
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.125rem;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+}

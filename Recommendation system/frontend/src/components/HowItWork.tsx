@@ -1,3 +1,6 @@
+import '../css/howitworks.css'
+
+
 const HowItWork = () => {
   return (
     <div className="d-flex justify-content-center " style={{ paddingTop: "20px", backgroundColor: "background: linear-gradient(90deg, #384ef4, #b060ed);" }}>

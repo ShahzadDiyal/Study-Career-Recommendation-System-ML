@@ -1,0 +1,10 @@
+/* benefits styling */
+.benefits-right-section{
+    border: 1px solid;
+    border-left: none;
+    padding: 20px;
+    width: 400px;
+    border-radius: 20px;
+    line-height: 2;
+    color: white;
+  }

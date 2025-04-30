@@ -1,3 +1,5 @@
+import '../css/team.css'
+
 
 const teamMembers = [
   {

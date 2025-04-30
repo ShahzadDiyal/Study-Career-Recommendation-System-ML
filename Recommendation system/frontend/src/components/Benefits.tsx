@@ -1,3 +1,5 @@
+import '../css/benefits.css'
+
 const Benefits = () => {
     return (
         <div style={{ padding: "50px", background: "linear-gradient(45deg, #0a8b1f, #4a47ff)", borderRadius: "20px", marginTop: "20px", justifyItems: "center" }}>

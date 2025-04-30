@@ -1,3 +1,6 @@
+import '../css/feature.css'
+
+
 const Feautures = () => {
 
     return (

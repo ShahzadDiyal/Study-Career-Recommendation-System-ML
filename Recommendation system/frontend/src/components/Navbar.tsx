@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import '../css/navbar.css'
+
 
 const Navbar = () => {
   return (
@@ -13,7 +15,6 @@ const Navbar = () => {
           <li><Link to="/recommendation-form">Get Reommendation</Link></li>
         </ul>
       </div>
-      <img className="logo" src="/shahzad.png" alt="" style={{ width: "20px",height:"20px",float:"inline-end" }} />
 
     </div>
   )

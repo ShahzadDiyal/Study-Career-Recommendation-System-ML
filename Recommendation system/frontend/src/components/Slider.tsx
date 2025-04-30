@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../css/slider.css'
+
 
 const Slider = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -24,7 +26,7 @@ const Slider = () => {
             >
                 {activeIndex === 0 && (
                     <div className="slide-content">
-                        <p style={{ fontSize: "45px", marginBottom: "0px" }}>Discover the Study Path Meant for You</p>
+                        <p style={{ fontSize: "40px", marginBottom: "0px", textAlign:"center" }}>Discover the Study Path Meant for You</p>
                         <div className="row" style={{ margin: "0px", padding: "0px" }}>
                             <div className="col-md-6 align-content-center">
                                 <ul style={{ alignItems: "center", lineHeight: "2" }}>
@@ -50,7 +52,7 @@ const Slider = () => {
             >
                 {activeIndex === 1 && (
                     <div className="slide-content">
-                        <p style={{ fontSize: "45px", marginBottom: "10px" }}>Smarter Study Choices by Intelligent Insights</p>
+                        <p style={{ fontSize: "40px", marginBottom: "0px", textAlign:"center" }}>Smarter Study Choices by Intelligent Insights</p>
                         <div className="row" style={{ margin: "0px", padding: "0px" }}>
                             <div className="col-md-6 align-content-center">
                                 <ul style={{ alignItems: "center", lineHeight: "2" }}>
@@ -76,7 +78,7 @@ const Slider = () => {
             >
                 {activeIndex === 2 && (
                     <div className="slide-content">
-                        <p style={{ fontSize: "45px", marginBottom: "0px" }}>Plan with Confidence, Learn with Purpose</p>
+                        <p style={{ fontSize: "40px", marginBottom: "0px", textAlign:"center" }}>Plan with Confidence, Learn with Purpose</p>
                         <div className="row" style={{ margin: "0px", padding: "0px" }}>
                             <div className="col-md-6 align-content-center">
                                 <ul style={{ alignItems: "center", lineHeight: "2" }}>
