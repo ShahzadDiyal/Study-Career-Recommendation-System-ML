@@ -1,47 +1,59 @@
-/* footer Component style */
 .footer {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 1200px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    display: flex;
-    z-index: 1000;
-    /* background: linear-gradient(90deg, #384ef4, #b060ed); */
-    background: #000d26;
-    backdrop-filter: blur(10px);
-    padding: 15px 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+  width: 100%;
+  background: linear-gradient(135deg, #000d26, #1a1443);
+  backdrop-filter: blur(8px);
+  padding: 20px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 16px 16px 0 0;
+  margin-top: 40px;
+  border-bottom: 3px solid yellow;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-menu {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-menu li a {
+  color: #ffdd57;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.footer-menu li a:hover {
+  background: linear-gradient(90deg, #384ef4, #b060ed);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
   .footer-menu {
-    list-style-type: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    /* background: linear-gradient(90deg, #384ef4, #b060ed); */
-    padding: 0;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 12px;
   }
-  
-  .footer-menu li a {
-    text-decoration: none;
-    font-weight: 500;
-    color: yellow;
-    padding: 8px 12px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+
+  .footer {
+    border-radius: 12px;
+    padding: 30px 15px;
   }
-  
-  .footer-menu li a:hover {
-    /* background-color: rgba(255, 255, 255, 0.4); */
-    color: #000;
-    background: linear-gradient(90deg, #384ef4, #b060ed);
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
+}

@@ -1,0 +1,30 @@
+.terms-conditions {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+.terms-conditions h1 {
+  font-weight: 700;
+}
+
+.terms-conditions h3 {
+  color: #0d6efd;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.terms-conditions ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.terms-conditions p, .terms-conditions li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 576px) {
+  .terms-conditions {
+    padding: 1.5rem 1rem;
+  }
+}

@@ -1,0 +1,37 @@
+.contact-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #384ef4, #b060ed);
+    padding: 20px;
+  }
+  
+  .contact-card {
+    background: #ffffff;
+    border-radius: 15px;
+  }
+  
+  .contact-card h2 {
+    font-weight: 700;
+  }
+  
+  .contact-card .form-label {
+    font-weight: 500;
+  }
+  
+  .contact-card .form-control {
+    border-radius: 8px;
+    padding: 10px 15px;
+  }
+  
+  .contact-card .btn-primary {
+    background-color: #384ef4;
+    border-color: #384ef4;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-card .btn-primary:hover {
+    background-color: #2c3dd7;
+    border-color: #2c3dd7;
+  }
+  

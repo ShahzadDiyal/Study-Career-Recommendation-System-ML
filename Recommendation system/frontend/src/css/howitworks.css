@@ -1,16 +1,44 @@
-/* how it work component styling */
-.howitwork-section{
-    width: 100%;
-    max-width: 1200px;
-    padding: 40px;
-    height: auto;
-    border-radius: 20px;
-    align-items: center;
-    background: linear-gradient(#4025b5, #000000);
+.howitwork-section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0c0c2d, #8f3be9,#3a3af1);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  margin: 0 auto;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.step-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+.step-card h5, .step-card p {
+  color: #ffffff;
+}
+
+.icon {
+  font-size: 48px;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .step-card {
+    margin-bottom: 20px;
   }
-  .step-card{
-    border: 1px solid ;
-    border-top: none;
-    border-radius: 20px;
-  }
-  
+}

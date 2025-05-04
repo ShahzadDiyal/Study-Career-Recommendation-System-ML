@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div 
       className="d-flex justify-content-center" 
-      style={{ minHeight: "100vh", paddingTop: "20px", background: "linear-gradient(90deg, #1a1a40, #3b0a2c);" }}
+      style={{ paddingTop: "20px", background: "linear-gradient(90deg, #1a1a40, #3b0a2c);" }}
     >
       <div className="about-section text-center">
         <h3 className="text-white">About</h3>

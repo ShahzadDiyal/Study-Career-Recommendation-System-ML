@@ -1,12 +1,14 @@
 import Contact from "../components/Contact"
-import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
+import Navbar2 from "../components/Navbar2"
 
 
 const ContactPage = () => {
   return (
     <div>
-        <Navbar />
+        <Navbar2 />
         <Contact />
+        <Footer />
     </div>
   )
 }

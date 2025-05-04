@@ -5,8 +5,7 @@ interface FormDataType {
   [key: string]: string | number;
 }
 
-const BaseUrl = 'http://localhost:5000'
-
+const BaseUrl = 'http://localhost:5000';
 
 const Home = () => {
   const [selectedGroup, setSelectedGroup] = useState<string>("");
@@ -75,93 +74,117 @@ const Home = () => {
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
+      className="position-relative"
       style={{
         minHeight: "100vh",
-        paddingTop: "20px",
-        background: "linear-gradient(90deg, #000000, #2daeaf)",
+        backgroundImage: 'url(../../images/nature.jpg)',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        marginTop:"20px"
       }}
     >
-      <form
-        onSubmit={handleSubmit}
-        className="form p-4 rounded shadow"
-        style={{ width: "100%", maxWidth: "1200px", backgroundColor: "#BBC2CC" }}
-      >
-        <h2 className="text-center mb-4">Your Career Recommender</h2>
+      {/* Overlay with opacity */}
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          zIndex: 0,
+        }}
+      ></div>
 
-        {/* Personal Info */}
-        <div className="row">
-          <h4>Personal Information:</h4>
-          {["name", "email", "phone"].map((field) => (
-            <div className="col-md-6 mb-3" key={field}>
-              <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
-              <input
-                className="form-control"
-                type={field === "email" ? "email" : field === "phone" ? "number" : "text"}
-                name={field}
-                onChange={handleChange}
-              />
+      {/* Form wrapper */}
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{
+          minHeight: "100vh",
+          padding: "20px",
+          position: "relative",
+          border:"2px solid",
+          zIndex: 1,
+        }}
+      >
+        <form
+          onSubmit={handleSubmit}
+          className="form p-4 rounded shadow"
+          style={{ width: "100%", maxWidth: "1200px"}}
+        >
+          <h2 className="text-center mb-4">Your Career Recommender</h2>
+
+          {/* Personal Info */}
+          <div className="row">
+            <h4>Personal Information:</h4>
+            {["name", "email", "phone"].map((field) => (
+              <div className="col-md-6 mb-3" key={field}>
+                <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                <input
+                  className="form-control"
+                  type={field === "email" ? "email" : field === "phone" ? "number" : "text"}
+                  name={field}
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
+            <div className="col-md-6 mb-3">
+              <label>Gender:</label>
+              <select className="form-control" name="gender" onChange={handleChange}>
+                <option value="">-- Select Gender --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
             </div>
-          ))}
-          <div className="col-md-6 mb-3">
-            <label>Gender:</label>
-            <select className="form-control" name="gender" onChange={handleChange}>
-              <option value="">-- Select Gender --</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+          </div>
+
+          <hr />
+          <h4>Enter the marks in the Compulsory Subjects:</h4>
+          <div className="row">
+            {["english", "urdu", "pak_study", "islamic_studies"].map(renderSubjectInput)}
+          </div>
+
+          <hr />
+          <div className="mb-3">
+            <label>Select your FSc Group:</label>
+            <select
+              className="form-control"
+              value={selectedGroup}
+              onChange={(e) => setSelectedGroup(e.target.value)}
+            >
+              <option value="">-- Select Group --</option>
+              <option value="Pre-Medical">Pre-Medical</option>
+              <option value="Pre-Engineering">Pre-Engineering</option>
+              <option value="ics">ICS</option>
+              <option value="arts">Arts</option>
             </select>
           </div>
-        </div>
 
-        <hr />
-        <h4>Enter the marks in the Compulsory Subjects:</h4>
-        <div className="row">
-          {["english", "urdu", "pak_study", "islamic_studies"].map(renderSubjectInput)}
-        </div>
+          <div className="row">
+            {selectedGroup === "Pre-Engineering" &&
+              ["physics", "chemistry", "math"].map(renderSubjectInput)}
 
-        <hr />
-        <div className="mb-3">
-          <label>Select your FSc Group:</label>
-          <select
-            className="form-control"
-            value={selectedGroup}
-            onChange={(e) => setSelectedGroup(e.target.value)}
-          >
-            <option value="">-- Select Group --</option>
-            <option value="Pre-Medical">Pre-Medical</option>
-            <option value="Pre-Engineering">Pre-Engineering</option>
-            <option value="ics">ICS</option>
-            <option value="arts">Arts</option>
-          </select>
-        </div>
+            {selectedGroup === "Pre-Medical" &&
+              ["physics", "chemistry", "biology"].map(renderSubjectInput)}
 
-        <div className="row">
-          {selectedGroup === "Pre-Engineering" &&
-            ["physics", "chemistry", "math"].map(renderSubjectInput)}
+            {selectedGroup === "ics" &&
+              ["physics", "computer", "math"].map(renderSubjectInput)}
 
-          {selectedGroup === "Pre-Medical" &&
-            ["physics", "chemistry", "biology"].map(renderSubjectInput)}
-
-          {selectedGroup === "ics" &&
-            ["physics", "computer", "math"].map(renderSubjectInput)}
-
-          {selectedGroup === "arts" &&
-            ["general_math", "islamic_history", "civics", "economics", "islamic_studies", "arabic"].map(renderSubjectInput)}
-        </div>
-
-        <div className="text-center mt-4">
-          <button className="btn btn-primary w-100" type="submit">
-            Submit
-          </button>
-        </div>
-
-        {result && (
-          <div className="text-center mt-4">
-            <h5 className="text-success">Recommended Career Path:</h5>
-            <p><strong>{result}</strong></p>
+            {selectedGroup === "arts" &&
+              ["general_math", "islamic_history", "civics", "economics", "islamic_studies", "arabic"].map(renderSubjectInput)}
           </div>
-        )}
-      </form>
+
+          <div className="text-center mt-4">
+            <button className="btn btn-primary w-100" type="submit">
+              Submit
+            </button>
+          </div>
+
+          {result && (
+            <div className="text-center mt-4">
+              <h5 className="text-success">Recommended Career Path:</h5>
+              <p><strong>{result}</strong></p>
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };

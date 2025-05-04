@@ -21,7 +21,7 @@ const teamMembers = [
 const TeamSection = () => {
   return (
     <div className="team-section py-5">
-      <h2 className="text-center text-white mb-2">Meet the Team</h2>
+      <h2 className="text-center mb-2 team-heading">Meet the Team</h2>
       <p className="text-center mb-3 text-white">
         Department of Computer Science, Govt College No.1 Dera Ismail Khan <br />
         Supervised by: Dr. MatiUllah Qureshi, Final Year Project Advisor and Supervisor

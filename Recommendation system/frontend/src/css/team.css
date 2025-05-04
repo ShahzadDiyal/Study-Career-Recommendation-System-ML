@@ -1,14 +1,108 @@
-/* team component style */
-.team-section{
-    margin: 20px 0 0 0;
-    padding: 0;
-    border-radius: 20px;
-    background: linear-gradient(#000000, #461d49);
+.team-section {
+  margin: 40px 0;
+  padding: 60px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #000000, #2c003e);
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.team-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+
+
+.team-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+
+
+.team-section p {
+  color: #cccccc;
+  font-size: 1rem;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid ;
+  padding: 30px 20px;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  max-width: 300px;
+  margin: 10px;
+}
+
+.team-card:hover {
+  /* transform: translateY(-8px) scale(1.03); */
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+  border: none;
+}
+
+.team-card h5 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+.team-card p {
+  color: #bbbbbb;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.team-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 3px solid #00fff0;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.team-card img:hover {
+  transform: scale(1.05);
+}
+
+.team-card .btn {
+  margin: 0 5px;
+  font-size: 0.85rem;
+  border-radius: 25px;
+  padding: 5px 15px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.team-card .btn:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .team-card {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 90%;
   }
-  .team-card{
-    border: 1px solid ;
-    padding: 20px;
-    margin-left: 5px;
-    border-radius: 20px;
+
+  .team-section h2 {
+    font-size: 2rem;
   }
-  
+
+  .team-section p {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+}

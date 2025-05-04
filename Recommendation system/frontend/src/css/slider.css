@@ -1,12 +1,10 @@
-/* slider.css */
-
+/* Slider Container */
 .slider-container {
   width: 100%;
   min-height: 500px;
   display: flex;
   gap: 10px;
   padding-top: 20px;
-  /* padding: 20px; */
   box-sizing: border-box;
   flex-wrap: wrap;
 }
@@ -20,13 +18,27 @@
   justify-content: center;
   color: white;
   flex: 1;
-  /* min-width: 300px; */
   position: relative;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Add semi-transparent overlay if needed */
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
+  z-index: 1;
+  border-radius: 20px;
 }
 
 .slide-content {
+  position: relative; /* ensures content stays above overlay */
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -39,26 +51,24 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* 🔁 Background Images for Each Slide */
 .slide:nth-child(1) {
-  background-color: #1a1a40;
-  /* background: linear-gradient(135deg, #040023, #1a1a40); */
+  background-image: url('../../images/nature.jpg'); /* ← your custom path */
 }
 
 .slide:nth-child(2) {
-  background-color: #3b0a2c;
-
-  /* background: linear-gradient(135deg, #641439, #992e53); */
+  background-image: url('../../images/nature2.jpg'); /* ← your custom path */
 }
 
 .slide:nth-child(3) {
-  background-color: #103f49;
-
-  /* background: linear-gradient(135deg, #1A535C, #287a7a); */
+  background-image: url('../../images/nature3.jpg'); /* ← your custom path */
 }
 
+/* Active and Inactive Slide Styles */
 .slide.active {
   flex: 10;
   opacity: 1;
+  border-left: 3px solid;
 }
 
 .slide.inactive {
@@ -66,26 +76,50 @@
   opacity: 0.5;
 }
 
+/* Heading Styling */
+.slide-heading {
+  font-size: 40px;
+  margin-bottom: 0;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* List Items and Button */
+.benefits-list {
+  padding-left: 20px;
+  list-style-type: none;
+  font-size: 1rem;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.6;
+}
+
+.check-icon {
+  color: #f39c12;
+}
+
 .get-started-btn {
-  border: none;
+  border: 1px solid;
   border-radius: 8px;
   padding: 10px 20px;
   background-color: #f39c12;
-  color: #fff;
+  color: #06225e;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(126, 112, 90, 0.5);
 }
 
 .get-started-btn:hover {
   background-color: #e67e22;
+  box-shadow: 0 8px 15px rgba(243, 156, 18, 0.7);
   transform: scale(1.05);
-}
-
-.slide-content ul {
-  padding-left: 20px;
-  list-style: disc;
-  font-size: 1rem;
 }
 
 .slide-content img {
@@ -94,31 +128,7 @@
   border-radius: 10px;
 }
 
-.slide-content p {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
-  color: #ffffff;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.col-md-6 {
-  flex: 1 1 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Responsive */
+/* Responsive Layout */
 @media (max-width: 768px) {
   .slider-container {
     flex-direction: column;
@@ -133,12 +143,12 @@
     align-items: center;
   }
 
-  .slide-content p {
+  .slide-heading {
     font-size: 1.5rem;
     text-align: center;
   }
 
-  .slide-content ul {
+  .benefits-list {
     font-size: 0.9rem;
   }
 
