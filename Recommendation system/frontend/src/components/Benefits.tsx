@@ -10,16 +10,16 @@ const Benefits = () => {
         </div>
         <div className="benefits-list">
           <ul>
-            <li>Personalized Study Path</li>
-            <li>AI-Powered Insights</li>
-            <li>Saves Time and Confusion</li>
-            <li>Boosts Academic Confidence</li>
-            <li>Career-Oriented Planning</li>
-            <li>Improves Decision-Making Skills</li>
-            <li>Adapts to Changing Interests</li>
-            <li>User-Friendly and Accessible</li>
-            <li>Early Guidance for Better Outcomes</li>
-            <li>Encourages Self-Discovery</li>
+            <li className='benefits-list-items'>Personalized Study Path</li>
+            <li className='benefits-list-items'>AI-Powered Insights</li>
+            <li className='benefits-list-items'>Saves Time and Confusion</li>
+            <li className='benefits-list-items'>Boosts Academic Confidence</li>
+            <li className='benefits-list-items'>Career-Oriented Planning</li>
+            <li className='benefits-list-items'>Improves Decision-Making Skills</li>
+            <li className='benefits-list-items'>Adapts to Changing Interests</li>
+            <li className='benefits-list-items'>User-Friendly and Accessible</li>
+            <li className='benefits-list-items'>Early Guidance for Better Outcomes</li>
+            <li className='benefits-list-items'>Encourages Self-Discovery</li>
           </ul>
         </div>
       </div>

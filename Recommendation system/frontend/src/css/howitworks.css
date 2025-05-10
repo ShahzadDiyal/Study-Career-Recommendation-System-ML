@@ -1,9 +1,10 @@
 .howitwork-section {
   width: 100%;
   max-width: 1200px;
-  padding: 40px 20px;
+  padding: 40px 40px;
+  margin: 20px 3px 10px 3px!important;
   border-radius: 20px;
-  background: linear-gradient(135deg, #0c0c2d, #8f3be9,#3a3af1);
+  background: linear-gradient(135deg, #0c0c2d, #8f3be9, #3a3af1);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   margin: 0 auto;
@@ -15,12 +16,23 @@
   100% { background-position: 0% 50%; }
 }
 
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .step-card {
+  flex: 1 1 calc(33.333% - 20px);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .step-card:hover {
@@ -28,17 +40,32 @@
   box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
 }
 
-.step-card h5, .step-card p {
+.step-card h5,
+.step-card p {
   color: #ffffff;
 }
 
 .icon {
   font-size: 48px;
   color: #fff;
+  margin-bottom: 15px;
 }
 
 @media (max-width: 767px) {
+  .steps-container {
+    flex-direction: column;
+  }
+  
+  .howitwork-section{
+    margin: 0px 3px 0px 3px;
+  }
+
+  h3{
+    font-size: 20px !important;
+    margin-bottom: 15px !important;
+  }
   .step-card {
+    flex: 1 1 100%;
     margin-bottom: 20px;
   }
 }

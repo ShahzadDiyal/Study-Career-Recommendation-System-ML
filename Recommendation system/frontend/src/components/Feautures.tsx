@@ -19,7 +19,7 @@ const Features = () => {
       <div className="card-grid">
         {features.map((feature, index) => (
           <div key={index} className="card">
-            <img src={feature.img} alt={feature.title} />
+            <img className='image' src={feature.img} alt={feature.title} />
             <p className="card-title">{feature.title}</p>
           </div>
         ))}

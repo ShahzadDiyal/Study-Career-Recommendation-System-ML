@@ -10,9 +10,9 @@ import Footer from "../components/Footer";
 const HomePage = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div id="home">
-        <Slider />
+        {/* <Slider /> */}
       </div>
       <div id="about">
         <About />
@@ -30,7 +30,7 @@ const HomePage = () => {
         <Team />
       </div>
       
-        <Footer />
+        {/* <Footer /> */}
       
     </>
   );

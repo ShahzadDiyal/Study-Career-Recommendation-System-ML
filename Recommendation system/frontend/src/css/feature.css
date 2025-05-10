@@ -1,8 +1,8 @@
 .feature-container {
   padding: 60px 20px;
-  background: linear-gradient(135deg, #0c0c2d, #8f3be9,#3a3af1);
+  background: linear-gradient(135deg, #0c0c2d, #8f3be9, #3a3af1);
   border-radius: 20px;
-  margin: 40px auto;
+  margin: 20px 3px ;
   max-width: 1300px;
   text-align: center;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
@@ -11,7 +11,6 @@
 .heading {
   font-size: 2rem;
   font-weight: 700;
-  text-align: center;
   margin-bottom: 30px;
   color: #ffffff;
 }
@@ -24,7 +23,6 @@
   color: #dddddd;
 }
 
-/* Grid layout with fixed 3 columns on large screens */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -32,13 +30,11 @@
   justify-items: center;
 }
 
-/* Card styling */
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
   border: 1px solid;
@@ -72,18 +68,14 @@
   color: #ffffff;
 }
 
-/* Mobile responsive: 1 card per row */
+/* Medium screens (581px–768px): 2 cards per row */
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .feature-container {
     padding: 40px 15px;
-  }
-
-  .heading {
-    font-size: 2rem;
   }
 
   .feature-description {
@@ -91,6 +83,28 @@
   }
 
   .card {
-    height: 300px;
+    height: 250px;
+  }
+
+  .heading{
+    font-size: 20px !important;
+  }
+
+ 
+}
+
+/* Small screens (≤ 580px): 1 card per row */
+@media (max-width: 580px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    height: 280px;
+  }
+
+   .card img{
+    width: 120px !important;
+    height: 120px;
   }
 }
