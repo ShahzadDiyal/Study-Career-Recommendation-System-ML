@@ -1,153 +1,209 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-interface FormDataType {
-  [key: string]: string | number;
-}
-
-const BaseUrl = 'http://localhost:5000';
+const BaseUrl = "http://localhost:5000";
 
 const Home = () => {
   const [selectedGroup, setSelectedGroup] = useState<string>("");
-  const [formData, setFormData] = useState<FormDataType>({});
   const [result, setResult] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value.trim() === "" ? 0 : value,
-    }));
+  const subjectFields: { [key: string]: string[] } = {
+    "Pre-Medical": ["physics", "chemistry", "biology"],
+    "Pre-Engineering": ["physics", "chemistry", "math"],
+    ics: ["physics", "computer", "math"],
+    arts: [
+      "general_math",
+      "islamic_history",
+      "civics",
+      "economics",
+      "islamic_studies",
+      "arabic",
+    ],
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const compulsorySubjects = ["english", "urdu", "pak_study", "islamic_studies"];
 
-    const groupMap: { [key: string]: number } = {
-      "Pre-Medical": 1,
-      "Pre-Engineering": 2,
-      "ics": 3,
-      "arts": 4,
-    };
-
-    const payload = {
-      "Educational Background": groupMap[selectedGroup] || 0,
-      "Biology": Number(formData["biology"]) || 0,
-      "Chemistry": Number(formData["chemistry"]) || 0,
-      "Civics": Number(formData["civics"]) || 0,
-      "Computer Science": Number(formData["computer"]) || 0,
-      "Economics": Number(formData["economics"]) || 0,
-      "English": Number(formData["english"]) || 0,
-      "Fine Arts": Number(formData["fine_arts"]) || 0,
-      "General Mathematics": Number(formData["general_math"]) || 0,
-      "Geography": Number(formData["geography"]) || 0,
-      "History": Number(formData["history"]) || 0,
-      "Islamic Studies": Number(formData["islamic_studies"]) || 0,
-      "Library Science": Number(formData["library_science"]) || 0,
-      "Maths": Number(formData["math"]) || 0,
-      "Pakistan Studies": Number(formData["pak_study"]) || 0,
-      "Physics": Number(formData["physics"]) || 0,
-      "Sociology": Number(formData["sociology"]) || 0,
-      "Statistics": Number(formData["statistics"]) || 0,
-      "Urdu": Number(formData["urdu"]) || 0,
-      "Islamic History": Number(formData["islamic_history"]) || 0,
-      "Arabic": Number(formData["arabic"]) || 0,
-    };
-
-    try {
-      const res = await axios.post(`${BaseUrl}/predict`, payload);
-      const prediction = res.data["Recommended Fields"];
-      setResult(prediction);
-      localStorage.setItem("career_prediction", prediction);
-    } catch (error) {
-      console.error("Prediction failed:", error);
-      setResult("Something went wrong. Please try again.");
-    }
+  const initialValues: any = {
+    name: "",
+    email: "",
+    phone: "",
+    gender: "",
+    ...Object.fromEntries([...compulsorySubjects, ...Object.values(subjectFields).flat()].map(s => [s, ""])),
   };
 
-  const renderSubjectInput = (subject: string) => (
-    <div className="col-md-6 mb-3" key={subject}>
-      <label>{subject.replace("_", " ").replace(/\b\w/g, (l) => l.toUpperCase())}:</label>
-      <input className="form-control" type="number" name={subject} onChange={handleChange} />
-    </div>
-  );
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    phone: Yup.string()
+      .matches(/^\d+$/, "Must be only digits")
+      .required("Phone is required"),
+    gender: Yup.string().required("Gender is required"),
+    ...Object.fromEntries(
+      compulsorySubjects.map((s) => [
+        s,
+        Yup.number()
+          .typeError("Enter valid number")
+          .min(0, "Min 0")
+          .max(200, "Max 200")
+          .required("Required"),
+      ])
+    ),
+  });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: async (values) => {
+      setLoading(true);
+      const groupMap: { [key: string]: number } = {
+        "Pre-Medical": 1,
+        "Pre-Engineering": 2,
+        ics: 3,
+        arts: 4,
+      };
+
+      const payload = {
+        "Educational Background": groupMap[selectedGroup] || 0,
+        ...Object.fromEntries(
+          Object.keys(values).map((k) => [k.replace(/_/g, " "), Number(values[k]) || 0])
+        ),
+      };
+
+      try {
+        const res = await axios.post(`${BaseUrl}/predict`, payload);
+        setResult(res.data["Recommended Fields"]);
+        localStorage.setItem("career_prediction", res.data["Recommended Fields"]);
+      } catch (err) {
+        setResult("Something went wrong. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    },
+  });
+
+  const renderInput = (name: string, label?: string) => (
+  <div className="col-md-6 mb-3" key={name}>
+    <label className="form-label">
+      {label || name.replace("_", " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+    </label>
+    <input
+      className={`form-control ${
+        formik.touched[name] && formik.errors[name] ? "is-invalid" : ""
+      }`}
+      type="number"
+      name={name}
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      value={formik.values[name]}
+    />
+    {formik.touched[name] && formik.errors[name] && (
+      <div className="invalid-feedback">
+        {typeof formik.errors[name] === "string" ? formik.errors[name] : ""}
+      </div>
+    )}
+  </div>
+);
+
 
   return (
     <div
       className="position-relative"
       style={{
         minHeight: "100vh",
-        backgroundImage: 'url(../../images/nature.jpg)',
+        backgroundImage: "url(../../images/nature.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        marginTop:"20px"
+        padding:"15px 0px",
+        marginTop:"10px"
       }}
     >
-      {/* Overlay with opacity */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          zIndex: 0,
-        }}
+        style={{ backgroundColor: "rgba(0,0,0,0.6)", zIndex: 0 }}
       ></div>
 
-      {/* Form wrapper */}
       <div
-        className="d-flex justify-content-center align-items-center"
-        style={{
-          minHeight: "100vh",
-          padding: "20px",
-          position: "relative",
-          border:"2px solid",
-          zIndex: 1,
-        }}
+        className="container d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh", position: "relative", zIndex: 1 }}
       >
         <form
-          onSubmit={handleSubmit}
-          className="form p-4 rounded shadow"
-          style={{ width: "100%", maxWidth: "1200px"}}
+          onSubmit={formik.handleSubmit}
+          className="bg-opacity-75 p-4 rounded shadow w-100 text-white"
+          style={{ maxWidth: "1000px"  ,backgroundColor: "rgba(0, 0, 255, 0.2)" }}
         >
-          <h2 className="text-center mb-4">Your Career Recommender</h2>
+          <h2 className="text-center mb-4 fw-bold">Career Recommendation Form</h2>
 
-          {/* Personal Info */}
           <div className="row">
-            <h4>Personal Information:</h4>
+            <h4 className="mb-3">Personal Information</h4>
             {["name", "email", "phone"].map((field) => (
               <div className="col-md-6 mb-3" key={field}>
-                <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                <label className="form-label">
+                  {field.charAt(0).toUpperCase() + field.slice(1)}:
+                </label>
                 <input
-                  className="form-control"
-                  type={field === "email" ? "email" : field === "phone" ? "number" : "text"}
+                  className={`form-control ${
+                    formik.touched[field] && formik.errors[field] ? "is-invalid" : ""
+                  }`}
+                  type={field === "email" ? "email" : "text"}
                   name={field}
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values[field]}
                 />
+                {formik.touched[field] && formik.errors[field] && (
+  <div className="invalid-feedback">
+    {/* Ensure the error message is always a string */}
+    {typeof formik.errors[field] === "string" ? formik.errors[field] : ""}
+  </div>
+)}
+
               </div>
             ))}
             <div className="col-md-6 mb-3">
-              <label>Gender:</label>
-              <select className="form-control" name="gender" onChange={handleChange}>
+              <label className="form-label">Gender:</label>
+              <select
+                className={`form-control ${
+                  formik.touched.gender && formik.errors.gender ? "is-invalid" : ""
+                }`}
+                name="gender"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.gender}
+              >
                 <option value="">-- Select Gender --</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
+            {formik.errors.gender && formik.errors.gender && (
+  <div className="invalid-feedback">
+    {typeof formik.errors.gender === "string" ? formik.errors.gender : ""}
+  </div>
+)}
+
+              {/* {formik.touched.gender && formik.errors.gender && (
+                <div className="invalid-feedback">{formik.errors.gender}</div>
+              )} */}  
             </div>
           </div>
 
           <hr />
-          <h4>Enter the marks in the Compulsory Subjects:</h4>
+          <h4>Compulsory Subjects</h4>
           <div className="row">
-            {["english", "urdu", "pak_study", "islamic_studies"].map(renderSubjectInput)}
+            {compulsorySubjects.map((s) => renderInput(s))}
           </div>
 
           <hr />
           <div className="mb-3">
-            <label>Select your FSc Group:</label>
+            <label className="form-label fw-bold">Select your FSc Group:</label>
             <select
               className="form-control"
               value={selectedGroup}
-              onChange={(e) => setSelectedGroup(e.target.value)}
+              onChange={(e) => {
+                setSelectedGroup(e.target.value);
+              }}
             >
               <option value="">-- Select Group --</option>
               <option value="Pre-Medical">Pre-Medical</option>
@@ -158,29 +214,32 @@ const Home = () => {
           </div>
 
           <div className="row">
-            {selectedGroup === "Pre-Engineering" &&
-              ["physics", "chemistry", "math"].map(renderSubjectInput)}
-
-            {selectedGroup === "Pre-Medical" &&
-              ["physics", "chemistry", "biology"].map(renderSubjectInput)}
-
-            {selectedGroup === "ics" &&
-              ["physics", "computer", "math"].map(renderSubjectInput)}
-
-            {selectedGroup === "arts" &&
-              ["general_math", "islamic_history", "civics", "economics", "islamic_studies", "arabic"].map(renderSubjectInput)}
+            {selectedGroup &&
+              subjectFields[selectedGroup]?.map((s) => renderInput(s))}
           </div>
 
           <div className="text-center mt-4">
-            <button className="btn btn-primary w-100" type="submit">
-              Submit
+            <button
+              className="btn btn-primary w-100 d-flex justify-content-center align-items-center gap-2"
+              type="submit"
+              disabled={loading}
+            >
+              {loading && (
+                <div
+                  className="spinner-border spinner-border-sm text-light"
+                  role="status"
+                ></div>
+              )}
+              <span>Submit</span>
             </button>
           </div>
 
           {result && (
             <div className="text-center mt-4">
               <h5 className="text-success">Recommended Career Path:</h5>
-              <p><strong>{result}</strong></p>
+              <p>
+                <strong>{result}</strong>
+              </p>
             </div>
           )}
         </form>

@@ -97,18 +97,30 @@ const Home = () => {
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
+      className="position-relative"
       style={{
         minHeight: "100vh",
-        paddingTop: "20px",
-        background: "linear-gradient(90deg, #2daeaf, #000000)",
+        backgroundImage: "url(../../images/nature.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        padding:"15px 0px",
+        marginTop:"10px"
       }}
     >
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
+        style={{ backgroundColor: "rgba(0,0,0,0.6)", zIndex: 0 }}
+      ></div>
+
+      <div
+        className="container d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh", position: "relative", zIndex: 1 }}
+      >
       <form
         onSubmit={handleSubmit}
         className="form p-4 rounded shadow"
-        style={{ width: "100%", maxWidth: "1200px", backgroundColor: "#F0F1F6" }}
-      >
+        style={{ width: "100%", maxWidth: "1200px" }}
+       >
         <h2 className="text-center mb-4 text-dark">Your Career Path Recommender</h2>
 
         {/* Personal Info */}
@@ -313,6 +325,7 @@ const Home = () => {
           </div>
         )}
       </form>
+      </div>
     </div>
   );
 };
