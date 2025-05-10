@@ -1,4 +1,3 @@
-/* Navbar Component style */
 .navbar {
   position: sticky;
   top: 0;
@@ -9,12 +8,25 @@
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
-  background: rgba(26, 26, 64, 0.6); /* matches slide 1 */
+  background: rgba(26, 26, 64, 0.6);
   backdrop-filter: blur(10px);
   padding: 15px 30px;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border-bottom: 3px solid yellow;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
 }
 
 .list-unstyle {
@@ -27,13 +39,9 @@
   align-items: center;
 }
 
-.menu-item{
-  text-decoration: none;
+.menu-item {
   font-weight: 500;
   color: #eeeeee;
-  /* padding: 8px 14px; */
-  border-radius: 8px;
-  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -47,15 +55,40 @@
 }
 
 .list-unstyle li a:hover {
-  /* background: linear-gradient(90deg, #3b0a2c, #103f49);  */
   color: #ffffff;
-  /* border-radius: 10px; */
   border-bottom: 1px solid yellow;
-  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); */
 }
 
-.logo {
-  width: 50px;
-  height: 50px;
-  margin-right: 20px;
+/* Responsive styles */
+@media (max-width: 992px) {
+  
+  .hamburger {
+    display: block;
+  }
+
+  .list-unstyle {
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    background: rgba(26, 26, 64, 0.95);
+    flex-direction: column;
+    width: 250px;
+    padding: 0px;
+    align-items: start;
+    padding-left: 10px;
+    border-radius: 10px;
+    gap: 0;
+    display: none; /* Hidden by default */
+    opacity: 0; /* Ensure it's invisible when hidden */
+    transition: opacity 0.3s ease; /* Smooth transition for fade effect */
+  }
+
+  .list-unstyle.menu-open {
+    display: flex; /* Display menu when open */
+    opacity: 1; /* Make it visible */
+  }
+
+  .list-unstyle li {
+    margin: 10px 0;
+  }
 }
