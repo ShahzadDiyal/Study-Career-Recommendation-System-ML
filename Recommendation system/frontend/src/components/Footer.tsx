@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import '../css/footer.css'
+import { Link } from "react-router-dom";
+import "../css/footer.css";
 
 const Footer = () => {
   return (
@@ -10,13 +10,13 @@ const Footer = () => {
           <li><Link to="/terms-and-conditions">Terms & Conditions</Link></li>
           <li><Link to="/contact">ContactUS</Link></li>
           <li><Link to="/support">Support</Link></li>
-          <li><a href="https://www.facebook.com/profile.php?id=61572242984709">Facebook</a></li>
-          <li><a href="https://www.linkedin.com/in/muhammad-shahzad-1b236b247/">LinkedIn</a></li>
-          <li><a href="https://github.com/ShahzadDiyal">Github</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61572242984709" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/in/muhammad-shahzad-1b236b247/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://github.com/ShahzadDiyal" target="_blank" rel="noopener noreferrer">Github</a></li>
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

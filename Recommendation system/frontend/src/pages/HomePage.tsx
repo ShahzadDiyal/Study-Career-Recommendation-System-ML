@@ -29,9 +29,7 @@ const HomePage = () => {
       <div id="team">
         <Team />
       </div>
-      
-        {/* <Footer /> */}
-      
+        <Footer />
     </>
   );
 };
