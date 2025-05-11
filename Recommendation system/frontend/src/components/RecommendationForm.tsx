@@ -3,6 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Footer from "./Footer";
+import ReactMarkdown from "react-markdown";
 
 const BaseUrl = "http://localhost:5000";
 
@@ -58,31 +59,62 @@ const Home = () => {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      setLoading(true);
-      const groupMap: { [key: string]: number } = {
-        "Pre-Medical": 1,
-        "Pre-Engineering": 2,
-        ics: 3,
-        arts: 4,
-      };
+  setLoading(true);
 
-      const payload = {
-        "Educational Background": groupMap[selectedGroup] || 0,
-        ...Object.fromEntries(
-          Object.keys(values).map((k) => [k.replace(/_/g, " "), Number(values[k]) || 0])
-        ),
-      };
+  const groupMap: { [key: string]: number } = {
+    "Pre-Medical": 1,
+    "Pre-Engineering": 2,
+    ics: 3,
+    arts: 4,
+  };
 
-      try {
-        const res = await axios.post(`${BaseUrl}/predict`, payload);
-        setResult(res.data["Recommended Fields"]);
-        localStorage.setItem("career_prediction", res.data["Recommended Fields"]);
-      } catch (err) {
-        setResult("Something went wrong. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    },
+  const payload: { [key: string]: number } = {
+    "Educational Background": groupMap[selectedGroup] || 0,
+  };
+
+   // Field mapping to convert frontend field names to backend keys
+ const fieldMap: { [key: string]: string } = {
+  name: "full_name",
+  email: "email_address",
+  phone: "contact_number",
+  gender: "gender",
+
+  english: "English",
+  urdu: "Urdu",
+  pak_study: "Pakistan Studies",
+  islamic_studies: "Islamic Studies",
+
+  physics: "Physics",
+  chemistry: "Chemistry",
+  biology: "Biology",
+  math: "Maths",
+
+  general_math: "General Mathematics",
+  islamic_history: "History",
+  civics: "Civics",
+  economics: "Economics",
+  arabic: "Fine Arts", // Assuming Arabic = Fine Arts
+  computer: "Computer Science",
+};
+
+
+  for (const [key, val] of Object.entries(values)) {
+    const backendKey = fieldMap[key];
+    if (backendKey) {
+      payload[backendKey] = Number(val) || 0;
+    }
+  }
+
+  try {
+    const res = await axios.post(`${BaseUrl}/predict`, payload);
+    setResult(res.data["Recommended Fields"]);
+    localStorage.setItem("career_prediction", res.data["Recommended Fields"]);
+  } catch (err) {
+    setResult("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+}
   });
 
   const renderInput = (name: string, label?: string) => (
@@ -235,14 +267,14 @@ const Home = () => {
             </button>
           </div>
 
-          {result && (
-            <div className="text-center mt-4">
-              <h5 className="text-success">Recommended Career Path:</h5>
-              <p>
-                <strong>{result}</strong>
-              </p>
-            </div>
-          )}
+           {result && (
+                      <div className="ResultBox">
+                        <h4 className="result-heading">Recommended Fields:</h4>
+                        <div className="markdown-body">
+                          <ReactMarkdown>{result}</ReactMarkdown>
+                        </div>
+                      </div>
+                    )}
         </form>
       </div>
       <Footer />

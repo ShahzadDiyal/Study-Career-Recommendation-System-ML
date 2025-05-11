@@ -39,17 +39,15 @@ feature_keys = [
 def predict():
     data = request.json
 
-    # Extract and convert input features
     try:
-        features = [float(data[key]) for key in feature_keys]
-    except KeyError as e:
-        return jsonify({"error": f"Missing field: {str(e)}"}), 400
+        features = [float(data.get(key, 0)) for key in feature_keys]
     except ValueError:
         return jsonify({"error": "All input values must be numbers"}), 400
 
-    # Make prediction
     prediction = model.predict([features])
     return jsonify({"Recommended Fields": prediction[0]})
+
+
 
 
 @app.route("/test-model", methods=["GET"])
