@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Footer from "./Footer";
 
 const BaseUrl = "http://localhost:5000";
 
@@ -244,6 +245,7 @@ const Home = () => {
           )}
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
